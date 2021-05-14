@@ -3,7 +3,7 @@ import React from 'react';
 import {currenciesData} from '../../data.js';
 import {setCurrency} from './currencyFilterSlice.js';
 
-export const CurrencyFilter = ({CurrencyFilter, dispatch}) => {
+export const CurrencyFilter = ({currencyFilter, dispatch}) => {
     const onClickHandler = (currency) => {
         dispatch(setCurrency(currency));
     };
@@ -18,9 +18,7 @@ export const CurrencyFilter = ({CurrencyFilter, dispatch}) => {
     function createCurrencyButton(currency) {
         return (
             <button
-                className={`currency-button ${
-                currencyFilter === currency && 'selected'
-            }`}
+                className={`currency-button ${currencyFilter === currency && 'selected'}`}
                 key={currency}
                 onClick={() => onClickHandler(currency)}
             >
