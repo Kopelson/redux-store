@@ -3,12 +3,13 @@ import React, { useEffect } from 'react';
 import {
     calculatePrice,
     getCurrencySymbol,
+    getFilteredInventory,
 } from '../../utilities/utilities.js';
 
 import { addItem } from '../cart/cartSlice.js';
 import { loadData } from './inventorySlice';
 
-export const Inventory = ({ inventory, currencyFilter, dispatch }) => {
+export const Inventory = ({ inventory, currencyFilter, dispatch, searchTerm }) => {
     const onMount = () => {
         dispatch(loadData());    
     };
@@ -21,8 +22,10 @@ export const Inventory = ({ inventory, currencyFilter, dispatch }) => {
     if (inventory.length === 0) {
         return <p> Sorry, no products are currently available... </p>;
     }
-
-    return <ul id="inventory-container">{inventory.map(createInventoryItem)}</ul>;
+    
+    const visibleAllItems = getFilteredInventory(inventory, searchTerm);
+   
+    return <ul id="inventory-container">{visibleAllItems.map(createInventoryItem)}</ul>;
     
     function createInventoryItem(inventoryItem) {
         const { price, name, img } = inventoryItem;

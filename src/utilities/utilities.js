@@ -29,3 +29,7 @@ switch (currencyFilter) {
     return '';
 }
 }
+
+export function getFilteredInventory(inventory, searchTerm) {
+  return inventory.filter(items => items.name.toLowerCase().includes(searchTerm.toLowerCase()));
+}
