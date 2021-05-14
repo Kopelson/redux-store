@@ -5,6 +5,7 @@ import {
 } from '../../utilities/utilities.js';
 
 //Import the changeItemQuantity() action creator.
+import {changeItemQuantity} from './cartSlice.js';
 
 export const Cart = (props) => {
     const { cart, currencyFilter, dispatch} = props;
@@ -19,7 +20,7 @@ export const Cart = (props) => {
         const newQuantity = Number(input);
 
         // Dispatch an action to change the quantity of the given name and quantity.
-
+        dispatch(changeItemQuantity(name, newQuantity));
     };
 
     // Use the cart and currencyFilter slices to render their data.
